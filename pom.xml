@@ -185,6 +185,13 @@
                 <version>1.18.20</version>
             </dependency>
 
+            <!-- mybatis-plus 增强CRUD -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.4.3.4</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
