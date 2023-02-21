@@ -130,6 +130,8 @@ public class VelocityUtils
     {
         List<String> templates = new ArrayList<String>();
         templates.add("vm/java/domain.java.vm");
+        templates.add("vm/java/domainBo.java.vm");
+        templates.add("vm/java/domainVo.java.vm");
         templates.add("vm/java/mapper.java.vm");
         templates.add("vm/java/service.java.vm");
         templates.add("vm/java/serviceImpl.java.vm");
@@ -172,7 +174,14 @@ public class VelocityUtils
         String javaPath = PROJECT_PATH + "/" + StringUtils.replace(packageName, ".", "/");
         String mybatisPath = MYBATIS_PATH + "/" + moduleName;
         String vuePath = "vue";
-
+        if (template.contains("domainBo.java.vm"))
+        {
+            fileName = StringUtils.format("{}/domain/{}.java", javaPath, className+"Bo");
+        }
+        if (template.contains("domainVo.java.vm"))
+        {
+            fileName = StringUtils.format("{}/domain/{}.java", javaPath, className+"Vo");
+        }
         if (template.contains("domain.java.vm"))
         {
             fileName = StringUtils.format("{}/domain/{}.java", javaPath, className);
