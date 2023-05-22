@@ -4,9 +4,9 @@ package ${packageName}.domain;
     import ${import};
     #end
     #if($table.crud || $table.sub)
-    import com.ruoyi.common.core.domain.BaseEntity;
+    import com.wosai.common.core.domain.BaseEntity;
     #elseif($table.tree)
-    import com.ruoyi.common.core.domain.TreeEntity;
+    import com.wosai.common.core.domain.TreeEntity;
     #end
 import lombok.Data;
 
@@ -17,8 +17,8 @@ import lombok.Data;
  * @date ${datetime}
  */
 @Data
-public class ${ClassName}Vo
-        {
+public class ${ClassName}Vo{
+
 private static final long serialVersionUID=1L;
 
 #foreach ($column in $columns)
@@ -46,4 +46,4 @@ private static final long serialVersionUID=1L;
 private List<${subClassName}> ${subclassName}List;
 
 #end
-        }
+}
