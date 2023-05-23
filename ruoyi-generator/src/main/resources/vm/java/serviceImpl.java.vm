@@ -15,7 +15,7 @@ import ${packageName}.mapper.${ClassName}Mapper;
 import ${packageName}.domain.${ClassName};
 
 import javax.annotation.Resource;
-import ${packageName}.service.${ClassName}Service;
+import ${packageName}.service.I${ClassName}Service;
 
 /**
  * ${functionName}Service业务层处理
@@ -24,7 +24,7 @@ import ${packageName}.service.${ClassName}Service;
  * @date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${ClassName}> implements ${ClassName}Service{
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${ClassName}> implements I${ClassName}Service{
 
     @Resource
     private ${ClassName}Mapper ${className}Mapper;
@@ -97,7 +97,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
      */
     @Override
     public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s){
-        return ${className}Mapper.deleteBatchIds(Arrays.asList(Arrays.asList(${pkColumn.javaField}s)));
+        return ${className}Mapper.deleteBatchIds(Arrays.asList(${pkColumn.javaField}s));
     }
 
     /**

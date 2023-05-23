@@ -10,14 +10,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author ${author}
  * @date ${datetime}
  */
-public interface ${ClassName}IService extends IService<${ClassName}>{
+public interface I${ClassName}Service extends IService<${ClassName}>{
     /**
      * 查询${functionName}
      *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return ${functionName}
      */
-        ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
+     ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField});
 
     /**
      * 查询${functionName}列表
