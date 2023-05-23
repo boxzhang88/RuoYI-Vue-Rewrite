@@ -1,10 +1,11 @@
 package ${packageName}.service.impl;
 
+import java.util.Arrays;
 import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
     #foreach ($column in $columns)
         #if($column.javaField == 'createTime' || $column.javaField == 'updateTime')
-        import com.wosai.common.utils.DateUtils;
+import com.wosai.common.utils.DateUtils;
             #break
         #end
     #end
@@ -96,7 +97,7 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
      */
     @Override
     public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s){
-        return ${className}Mapper.delete${ClassName}ByIds(${pkColumn.javaField}s);
+        return ${className}Mapper.deleteBatchIds(Arrays.asList(Arrays.asList(${pkColumn.javaField}s)));
     }
 
     /**
@@ -107,6 +108,6 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Mapper, ${C
      */
     @Override
     public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}){
-        return ${className}Mapper.delete${ClassName}ById(${pkColumn.javaField});
+        return ${className}Mapper.deleteById(${pkColumn.javaField});
     }
 }
