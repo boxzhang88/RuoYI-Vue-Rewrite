@@ -1,13 +1,13 @@
 package ${packageName}.domain;
 
     #foreach ($import in $importList)
-    import ${import};
+import ${import};
     #end
 import com.wosai.common.annotation.Excel;
     #if($table.crud || $table.sub)
-    import com.wosai.common.core.domain.BaseEntity;
+import com.wosai.common.core.domain.BaseEntity;
     #elseif($table.tree)
-    import com.wosai.common.core.domain.TreeEntity;
+import com.wosai.common.core.domain.TreeEntity;
     #end
 import lombok.Data;
 import com.ruoyi.common.core.domain.BaseEntity;
