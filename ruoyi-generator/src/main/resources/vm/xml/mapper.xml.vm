@@ -11,12 +11,7 @@
     </resultMap>
 
     <sql id="select${ClassName}Vo">
-        select   #set($count = 0)
-            #foreach($column in $columns)
-                $column.columnName#if($count < $columns.size()),#end
-                #set($count = $count + 1)
-            #end
-         from   ${tableName}
+        select#foreach($column in $columns) $column.columnName#if($foreach.count != $columns.size()),#end#end from ${tableName}
     </sql>
 
     <select id="select${ClassName}List" resultMap="${ClassName}Result">
