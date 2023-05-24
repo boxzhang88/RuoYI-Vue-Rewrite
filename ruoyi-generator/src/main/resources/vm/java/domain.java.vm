@@ -12,7 +12,6 @@ import com.luwang.common.core.domain.TreeEntity;
 import lombok.Data;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.luwang.common.core.domain.BaseEntity;
 /**
  * ${functionName}对象 ${tableName}
  *
@@ -20,6 +19,7 @@ import com.luwang.common.core.domain.BaseEntity;
  * @date ${datetime}
  */
 @Data
+@ApiModel(value = "${ClassName}", description = "${functionName}对象 ${tableName}")
 public class ${ClassName} extends BaseEntity{
 
 private static final long serialVersionUID=1L;
