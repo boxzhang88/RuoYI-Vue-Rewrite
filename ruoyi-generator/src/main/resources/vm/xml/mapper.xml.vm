@@ -11,7 +11,12 @@
     </resultMap>
 
     <sql id="select${ClassName}Vo">
-        select#foreach($column in $columns) $column.columnName#if($velocityCount != $columns.size()),#end#end from ${tableName}
+            #set($count = 0)
+            #foreach($column in $columns)
+                $column.columnName#if($count < $columns.size()),#end
+                #set($count = $count + 1)
+            #end
+            ${tableName}
     </sql>
 
     <select id="select${ClassName}List" resultMap="${ClassName}Result">
@@ -25,21 +30,21 @@
                 #set($AttrName=$column.javaField.substring(0,1).toUpperCase() + ${column.javaField.substring(1)})
                 #if($column.query)
                     #if($column.queryType == "EQ")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName = #{$javaField}</if>
+             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName = #{$javaField}</if>
                     #elseif($queryType == "NE")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName != #{$javaField}</if>
+            <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName != #{$javaField}</if>
                     #elseif($queryType == "GT")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &gt; #{$javaField}</if>
+             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &gt; #{$javaField}</if>
                     #elseif($queryType == "GTE")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &gt;= #{$javaField}</if>
+             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &gt;= #{$javaField}</if>
                     #elseif($queryType == "LT")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &lt; #{$javaField}</if>
+             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &lt; #{$javaField}</if>
                     #elseif($queryType == "LTE")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &lt;= #{$javaField}</if>
+             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName &lt;= #{$javaField}</if>
                     #elseif($queryType == "LIKE")
-                        <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName like concat('%', #{$javaField}, '%')</if>
+             <if test="$javaField != null #if($javaType == 'String' ) and $javaField.trim() != ''#end"> and $columnName like concat('%', #{$javaField}, '%')</if>
                     #elseif($queryType == "BETWEEN")
-                        <if test="params.begin$AttrName != null and params.begin$AttrName != '' and params.end$AttrName != null and params.end$AttrName != ''"> and $columnName between #{params.begin$AttrName} and #{params.end$AttrName}</if>
+             <if test="params.begin$AttrName != null and params.begin$AttrName != '' and params.end$AttrName != null and params.end$AttrName != ''"> and $columnName between #{params.begin$AttrName} and #{params.end$AttrName}</if>
                     #end
                 #end
             #end

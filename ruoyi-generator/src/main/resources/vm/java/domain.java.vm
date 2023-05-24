@@ -10,6 +10,8 @@ import com.luwang.common.core.domain.BaseEntity;
 import com.luwang.common.core.domain.TreeEntity;
     #end
 import lombok.Data;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import com.luwang.common.core.domain.BaseEntity;
 /**
  * ${functionName}对象 ${tableName}
@@ -44,7 +46,9 @@ private static final long serialVersionUID=1L;
         #if($column.columnName == 'id')
     @TableId(type = IdType.ASSIGN_UUID)
         #end
+    @ApiModelProperty(value = "$column.columnComment")
     private $column.javaType $column.javaField;
+
     #end
 #end
 #if($table.sub)

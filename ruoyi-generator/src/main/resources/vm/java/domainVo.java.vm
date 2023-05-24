@@ -9,7 +9,8 @@ import com.wosai.common.core.domain.BaseEntity;
 import com.wosai.common.core.domain.TreeEntity;
     #end
 import lombok.Data;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 /**
  * ${functionName}对象 ${tableName}
  *
@@ -17,6 +18,7 @@ import lombok.Data;
  * @date ${datetime}
  */
 @Data
+@ApiModel(value = "${ClassName}", description = "${functionName}对象 ${tableName}")
 public class ${ClassName}Vo{
 
 private static final long serialVersionUID=1L;
@@ -37,6 +39,7 @@ private static final long serialVersionUID=1L;
             #else
             #end
         #end
+    @ApiModelProperty(value = "$column.columnComment")
     private $column.javaType $column.javaField;
 
     #end
