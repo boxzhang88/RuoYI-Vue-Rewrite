@@ -11,12 +11,12 @@
     </resultMap>
 
     <sql id="select${ClassName}Vo">
-            #set($count = 0)
+        select   #set($count = 0)
             #foreach($column in $columns)
                 $column.columnName#if($count < $columns.size()),#end
                 #set($count = $count + 1)
             #end
-            ${tableName}
+         from   ${tableName}
     </sql>
 
     <select id="select${ClassName}List" resultMap="${ClassName}Result">
