@@ -143,20 +143,6 @@
                 <version>${kaptcha.version}</version>
             </dependency>
 
-            <!-- 定时任务-->
-            <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-quartz</artifactId>
-                <version>${ruoyi.version}</version>
-            </dependency>
-
-            <!-- 代码生成-->
-            <dependency>
-                <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-generator</artifactId>
-                <version>${ruoyi.version}</version>
-            </dependency>
-
             <!-- 核心模块-->
             <dependency>
                 <groupId>com.ruoyi</groupId>
@@ -199,16 +185,9 @@
         <module>ruoyi-admin</module>
         <module>ruoyi-framework</module>
         <module>ruoyi-system</module>
-        <module>ruoyi-quartz</module>
-        <module>ruoyi-generator</module>
         <module>ruoyi-common</module>
     </modules>
     <packaging>pom</packaging>
-
-
-    <dependencies>
-
-    </dependencies>
 
     <build>
         <plugins>

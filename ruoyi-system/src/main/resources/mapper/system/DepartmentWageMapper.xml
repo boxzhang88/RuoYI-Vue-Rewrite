@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.DepartmentWageMapper">
+
+    <resultMap type="DepartmentWage" id="DepartmentWageResult">
+        <result property="id" column="id"/>
+        <result property="departmentCode" column="department_code"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="costItemCode" column="cost_item_code"/>
+        <result property="costItemName" column="cost_item_name"/>
+        <result property="amount" column="amount"/>
+        <result property="doctorNurse" column="doctor_nurse"/>
+        <result property="costSource" column="cost_source"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+</mapper>

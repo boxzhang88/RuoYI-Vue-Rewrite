@@ -1,12 +1,5 @@
 package com.ruoyi.framework.web.service;
 
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import com.ruoyi.common.constant.CacheConstants;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.constant.UserConstants;
@@ -14,11 +7,7 @@ import com.ruoyi.common.core.domain.entity.SysUser;
 import com.ruoyi.common.core.domain.model.LoginUser;
 import com.ruoyi.common.core.redis.RedisCache;
 import com.ruoyi.common.exception.ServiceException;
-import com.ruoyi.common.exception.user.BlackListException;
-import com.ruoyi.common.exception.user.CaptchaException;
-import com.ruoyi.common.exception.user.CaptchaExpireException;
-import com.ruoyi.common.exception.user.UserNotExistsException;
-import com.ruoyi.common.exception.user.UserPasswordNotMatchException;
+import com.ruoyi.common.exception.user.*;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.MessageUtils;
 import com.ruoyi.common.utils.StringUtils;
@@ -28,6 +17,16 @@ import com.ruoyi.framework.manager.factory.AsyncFactory;
 import com.ruoyi.framework.security.context.AuthenticationContextHolder;
 import com.ruoyi.system.service.ISysConfigService;
 import com.ruoyi.system.service.ISysUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录校验方法
@@ -54,23 +53,21 @@ public class SysLoginService
 
     /**
      * 登录验证
-     * 
+     *
      * @param username 用户名
      * @param password 密码
-     * @param code 验证码
-     * @param uuid 唯一标识
+     * @param code     验证码
+     * @param uuid     唯一标识
      * @return 结果
      */
-    public String login(String username, String password, String code, String uuid)
-    {
+    public Map login(String username, String password, String code, String uuid) {
         // 验证码校验
-        validateCaptcha(username, code, uuid);
+        //validateCaptcha(username, code, uuid);
         // 登录前置校验
-        loginPreCheck(username, password);
+        //loginPreCheck(username, password);
         // 用户验证
         Authentication authentication = null;
-        try
-        {
+        try {
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
             AuthenticationContextHolder.setContext(authenticationToken);
             // 该方法会去调用UserDetailsServiceImpl.loadUserByUsername
@@ -88,16 +85,19 @@ public class SysLoginService
                 AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
                 throw new ServiceException(e.getMessage());
             }
-        }
-        finally
-        {
+        } finally {
             AuthenticationContextHolder.clearContext();
         }
         AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         recordLoginInfo(loginUser.getUserId());
+        Map map = new HashMap(4);
         // 生成token
-        return tokenService.createToken(loginUser);
+        map.put("token", tokenService.createToken(loginUser));
+        map.put("username", loginUser.getUsername());
+        map.put("userId", loginUser.getUserId());
+        map.put("permissions", loginUser.getPermissions());
+        return map;
     }
 
     /**

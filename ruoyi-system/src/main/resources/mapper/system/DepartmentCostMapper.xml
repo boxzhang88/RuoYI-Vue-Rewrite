@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.DepartmentCostMapper">
+
+    <resultMap type="DepartmentCost" id="DepartmentCostResult">
+        <result property="id" column="id"/>
+        <result property="projectName" column="project_name"/>
+        <result property="personnelExpenses" column="personnel_expenses"/>
+        <result property="medicalMaterialExpenses" column="medical_material_expenses"/>
+        <result property="medicineExpenses" column="medicine_expenses"/>
+        <result property="fixedAssetsDepreciation" column="fixed_assets_depreciation"/>
+        <result property="intangibleAssetsAmortization" column="intangible_assets_amortization"/>
+        <result property="otherOperatingExpenses" column="other_operating_expenses"/>
+        <result property="auxiliaryServiceCosts" column="auxiliary_service_costs"/>
+        <result property="administrativeExpenses" column="administrative_expenses"/>
+        <result property="totalExpenses" column="total_expenses"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+</mapper>

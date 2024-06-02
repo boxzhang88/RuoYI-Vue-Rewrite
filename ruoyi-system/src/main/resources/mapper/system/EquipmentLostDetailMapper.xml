@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.EquipmentLostDetailMapper">
+
+    <resultMap type="EquipmentLostDetail" id="EquipmentLostDetailResult">
+        <result property="id" column="id"/>
+        <result property="projectName" column="project_name"/>
+        <result property="mobileNursingCart" column="mobile_nursing_cart"/>
+        <result property="smartInfusionMonitor" column="smart_infusion_monitor"/>
+        <result property="smartInfusionSystem" column="smart_infusion_system"/>
+        <result property="bloodGlucoseMeter" column="blood_glucose_meter"/>
+        <result property="vitalSignsMonitor" column="vital_signs_monitor"/>
+        <result property="microInjectionPump" column="micro_injection_pump"/>
+        <result property="bedUnitDisinfector" column="bed_unit_disinfector"/>
+        <result property="chemotherapyPump" column="chemotherapy_pump"/>
+        <result property="airDisinfector" column="air_disinfector"/>
+        <result property="remark" column="remark"/>
+        <result property="specialEquipmentCost" column="special_equipment_cost"/>
+        <result property="hourlyRate" column="hourly_rate"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="taskId" column="task_id"/>
+        <result property="departmentId" column="department_id"/>
+    </resultMap>
+</mapper>

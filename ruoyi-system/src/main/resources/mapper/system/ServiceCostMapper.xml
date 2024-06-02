@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.ServiceCostMapper">
+
+    <resultMap type="ServiceCost" id="ServiceCostResult">
+        <result property="id" column="id"/>
+        <result property="priceCode" column="price_code"/>
+        <result property="projectCode" column="project_code"/>
+        <result property="projectName" column="project_name"/>
+        <result property="personnelExpenses" column="personnel_expenses"/>
+        <result property="healthMaterialExpenses" column="health_material_expenses"/>
+        <result property="drugExpenses" column="drug_expenses"/>
+        <result property="fixedAssetDepreciation" column="fixed_asset_depreciation"/>
+        <result property="intangibleAssetAmortization" column="intangible_asset_amortization"/>
+        <result property="medicalRiskFund" column="medical_risk_fund"/>
+        <result property="otherExpenses" column="other_expenses"/>
+        <result property="financialFunding" column="financial_funding"/>
+        <result property="nonSameLevelFinancialFunding" column="non_same_level_financial_funding"/>
+        <result property="scientificEducationProject" column="scientific_education_project"/>
+        <result property="otherScientificEducationExpenses" column="other_scientific_education_expenses"/>
+        <result property="auxiliaryServiceCost" column="auxiliary_service_cost"/>
+        <result property="managementExpenses" column="management_expenses"/>
+        <result property="medicalTechnologyCost" column="medical_technology_cost"/>
+        <result property="drugCost" column="drug_cost"/>
+        <result property="unitCost" column="unit_cost"/>
+        <result property="unitPrice" column="unit_price"/>
+        <result property="exampleCount" column="example_count"/>
+        <result property="balance" column="balance"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="taskId" column="task_id"/>
+        <result property="departmentId" column="department_id"/>
+    </resultMap>
+</mapper>
