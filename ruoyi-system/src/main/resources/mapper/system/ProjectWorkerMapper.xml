@@ -23,6 +23,7 @@
     <select id="selectProjectWorkerList" resultType="com.ruoyi.system.domain.ProjectWorker">
         select *
         from project_worker
+        order by create_time desc
     </select>
 
 </mapper>

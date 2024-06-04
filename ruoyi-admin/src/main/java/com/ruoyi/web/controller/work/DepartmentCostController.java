@@ -1,5 +1,6 @@
 package com.ruoyi.web.controller.work;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
@@ -33,7 +34,9 @@ public class DepartmentCostController extends BaseController {
     @PostMapping("/list")
     public TableDataInfo list(DepartmentCost departmentCost) {
         startPage();
-        List<DepartmentCost> list = departmentCostService.list();
+        LambdaQueryWrapper<DepartmentCost> lam = new LambdaQueryWrapper<>();
+        lam.orderByDesc(DepartmentCost::getCreateTime);
+        List<DepartmentCost> list = departmentCostService.list(lam);
         return getDataTable(list);
     }
 

@@ -1,5 +1,6 @@
 package com.ruoyi.web.controller.work;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
@@ -34,7 +35,9 @@ public class EquipmentLostDetailController extends BaseController {
     public TableDataInfo list(EquipmentLostDetail equipmentLostDetail) {
 
         startPage();
-        List<EquipmentLostDetail> list = equipmentLostDetailService.list();
+        LambdaQueryWrapper<EquipmentLostDetail> lam = new LambdaQueryWrapper<>();
+        lam.orderByDesc(EquipmentLostDetail::getCreateTime);
+        List<EquipmentLostDetail> list = equipmentLostDetailService.list(lam);
         return getDataTable(list);
     }
 
