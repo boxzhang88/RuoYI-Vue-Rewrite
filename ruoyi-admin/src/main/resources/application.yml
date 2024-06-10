@@ -21,7 +21,7 @@ server:
   port: 8080
   servlet:
     # 应用的访问路径
-    context-path: /api
+    #context-path: /api
   tomcat:
     # tomcat的URI编码
     uri-encoding: UTF-8
@@ -70,13 +70,13 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: 121.43.103.20
+    host: 127.0.0.1
     # 端口，默认为6379
     port: 6379
     # 数据库索引
     database: 6
     # 密码
-    password: xy100$
+    #password: xy100$
     # 连接超时时间
     timeout: 10s
     lettuce:

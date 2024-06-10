@@ -6,6 +6,8 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.EquipmentLostDetail;
+import com.ruoyi.system.domain.Task;
+import com.ruoyi.system.mapper.TaskMapper;
 import com.ruoyi.system.service.IEquipmentLostDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -27,6 +30,9 @@ import java.util.List;
 public class EquipmentLostDetailController extends BaseController {
     @Autowired
     private IEquipmentLostDetailService equipmentLostDetailService;
+
+    @Resource
+    private TaskMapper taskMapper;
 
     /**
      * 查询设备折旧明细列表
@@ -46,9 +52,12 @@ public class EquipmentLostDetailController extends BaseController {
     public AjaxResult importData(MultipartFile file, Long departmentId, Long taskId) throws Exception {
         ExcelUtil<EquipmentLostDetail> util = new ExcelUtil<>(EquipmentLostDetail.class);
         List<EquipmentLostDetail> projectWorkers = util.importExcel(file.getInputStream());
+        final Task task = taskMapper.selectById(taskId);
         for (EquipmentLostDetail equipmentLostDetail : projectWorkers) {
             equipmentLostDetail.setDepartmentId(departmentId);
             equipmentLostDetail.setTaskId(taskId);
+            equipmentLostDetail.setTaskId(taskId);
+            equipmentLostDetail.setTaskName(task.getTaskName());
         }
         equipmentLostDetailService.saveBatch(projectWorkers);
         return success(projectWorkers.size());

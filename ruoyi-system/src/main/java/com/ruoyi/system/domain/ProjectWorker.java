@@ -70,6 +70,8 @@ public class ProjectWorker extends BaseEntity {
      * 关联任务id
      */
     private Long taskId;
+    private String taskName;
+
 
     /**
      * 关联部门id

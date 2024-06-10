@@ -6,6 +6,8 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.system.domain.DepartmentCost;
+import com.ruoyi.system.domain.Task;
+import com.ruoyi.system.mapper.TaskMapper;
 import com.ruoyi.system.service.IDepartmentCostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -27,6 +30,8 @@ import java.util.List;
 public class DepartmentCostController extends BaseController {
     @Autowired
     private IDepartmentCostService departmentCostService;
+    @Resource
+    private TaskMapper taskMapper;
 
     /**
      * 查询医院业务科室全成本汇总列表
@@ -45,9 +50,12 @@ public class DepartmentCostController extends BaseController {
     public AjaxResult importData(MultipartFile file, Long departmentId, Long taskId) throws Exception {
         ExcelUtil<DepartmentCost> util = new ExcelUtil<>(DepartmentCost.class);
         List<DepartmentCost> departmentWages = util.importExcel(file.getInputStream());
+        final Task task = taskMapper.selectById(taskId);
         for (DepartmentCost departmentCost : departmentWages) {
             departmentCost.setDepartmentId(departmentId);
             departmentCost.setTaskId(taskId);
+            departmentCost.setTaskId(taskId);
+            departmentCost.setTaskName(task.getTaskName());
         }
         departmentCostService.saveBatch(departmentWages);
         return success(departmentWages.size());

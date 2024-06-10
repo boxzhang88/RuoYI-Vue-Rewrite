@@ -94,6 +94,7 @@ public class EquipmentLostDetail extends BaseEntity {
     private BigDecimal hourlyRate;
 
     private Long taskId;
+    private String taskName;
 
     private Long departmentId;
 }

@@ -161,6 +161,9 @@ public class ServiceCost extends BaseEntity {
      */
     private Long taskId;
 
+    private String taskName;
+
+
     /**
      * 关联科室部门id
      */

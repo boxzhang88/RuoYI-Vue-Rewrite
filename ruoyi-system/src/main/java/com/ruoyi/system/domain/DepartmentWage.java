@@ -64,6 +64,8 @@ public class DepartmentWage extends BaseEntity {
     @Excel(name = "成本来源")
     private String costSource;
     private Long taskId;
+    private String taskName;
+
     private Long departmentId;
 
 }
