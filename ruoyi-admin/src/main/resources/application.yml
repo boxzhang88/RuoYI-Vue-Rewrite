@@ -19,7 +19,7 @@ ruoyi:
 server:
   # 服务器的HTTP端口，默认为8080
   port: 8080
-  servlet:
+  #servlet:
     # 应用的访问路径
     #context-path: /api
   tomcat:
@@ -70,13 +70,13 @@ spring:
   # redis 配置
   redis:
     # 地址
-    host: 127.0.0.1
+    host: 121.43.103.20
     # 端口，默认为6379
     port: 6379
     # 数据库索引
     database: 6
     # 密码
-    #password: xy100$
+    password: xy100$
     # 连接超时时间
     timeout: 10s
     lettuce:
@@ -107,12 +107,7 @@ mybatis-plus:
     mapperLocations: classpath*:mapper/**/*Mapper.xml
     # 加载全局的配置文件
     configLocation: classpath:mybatis/mybatis-config.xml
-    global-config:
-      db-config:
-        id-type: auto
-        logic-delete-field: del_flag
-        logic-not-delete-value: 0
-        logic-delete-value: 1
+
 
 # PageHelper分页插件
 pagehelper: 

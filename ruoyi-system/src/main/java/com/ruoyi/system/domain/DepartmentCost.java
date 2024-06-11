@@ -87,4 +87,5 @@ public class DepartmentCost extends BaseEntity {
     private Long taskId;
     private String taskName;
     private Long departmentId;
+    private String departmentName;
 }

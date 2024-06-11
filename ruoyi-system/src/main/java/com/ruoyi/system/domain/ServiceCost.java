@@ -168,5 +168,6 @@ public class ServiceCost extends BaseEntity {
      * 关联科室部门id
      */
     private Long departmentId;
+    private String departmentName;
 
 }

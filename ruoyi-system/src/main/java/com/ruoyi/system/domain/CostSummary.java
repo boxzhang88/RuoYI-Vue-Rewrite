@@ -24,4 +24,6 @@ public class CostSummary extends BaseEntity {
     private BigDecimal totalStandardCost; // 总标准成本
     private Long taskId;
     private String taskName;
+    private Long departmentId;
+    private String departmentName;
 }

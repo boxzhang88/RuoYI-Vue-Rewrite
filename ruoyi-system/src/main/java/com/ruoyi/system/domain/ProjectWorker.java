@@ -77,5 +77,6 @@ public class ProjectWorker extends BaseEntity {
      * 关联部门id
      */
     private Long departmentId;
+    private String departmentName;
 
 }

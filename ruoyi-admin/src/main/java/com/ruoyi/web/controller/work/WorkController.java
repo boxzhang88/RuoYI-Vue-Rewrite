@@ -3,14 +3,13 @@ package com.ruoyi.web.controller.work;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.utils.NumberRandomUtil;
 import com.ruoyi.system.domain.CostSummary;
+import com.ruoyi.system.domain.Department;
 import com.ruoyi.system.domain.Project;
 import com.ruoyi.system.domain.Task;
-import com.ruoyi.system.mapper.CostSummaryMapper;
-import com.ruoyi.system.mapper.ProjectMapper;
-import com.ruoyi.system.mapper.ProjectWorkerMapper;
-import com.ruoyi.system.mapper.TaskMapper;
+import com.ruoyi.system.mapper.*;
 import com.ruoyi.system.service.CostSummaryService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +41,8 @@ public class WorkController extends BaseController {
     private ProjectWorkerMapper projectWorkerMapper;
     @Resource
     private CostSummaryService costSummaryService;
+    @Resource
+    private DepartmentMapper departmentMapper;
 
     /**
      * 生成汇总
@@ -51,9 +52,12 @@ public class WorkController extends BaseController {
     public AjaxResult reportSummary(@RequestBody CostSummary frontCostSummary) {
         final Task task = taskMapper.selectById(frontCostSummary.getTaskId());
         final List<Project> projects = projectMapper.selectList(new LambdaQueryWrapper<>());
+        final Department department = departmentMapper.selectById(frontCostSummary.getDepartmentId());
         List<CostSummary> costSummaryList = new ArrayList<>();
         for (Project project : projects) {
             CostSummary costSummary = new CostSummary();
+            costSummary.setDepartmentId(frontCostSummary.getDepartmentId());
+            costSummary.setDepartmentName(department.getDeptName());
             costSummary.setProjectName(project.getProjectName());
             costSummary.setTaskId(frontCostSummary.getTaskId());
             costSummary.setTaskName(task.getTaskName());
@@ -97,5 +101,25 @@ public class WorkController extends BaseController {
         }
         costSummaryService.saveBatch(costSummaryList);
         return AjaxResult.success();
+    }
+
+    /**
+     * 分页
+     *
+     * @return
+     */
+    @RequestMapping("/reportSummaryList")
+    public TableDataInfo reportSummaryList(@RequestBody CostSummary costSummary) {
+        startPage();
+        LambdaQueryWrapper<CostSummary> lam = new LambdaQueryWrapper();
+        lam.eq(costSummary.getTaskId() != null, CostSummary::getTaskId, costSummary.getTaskId());
+        lam.orderByDesc(CostSummary::getCreateTime);
+        final List<CostSummary> costSummaryList = costSummaryMapper.selectList(lam);
+        return getDataTable(costSummaryList);
+    }
+
+    @RequestMapping("/delReportSummary")
+    public AjaxResult delReportSummary(@RequestBody CostSummary costSummary) {
+        return AjaxResult.success(costSummaryService.remove(new LambdaQueryWrapper<>()));
     }
 }
