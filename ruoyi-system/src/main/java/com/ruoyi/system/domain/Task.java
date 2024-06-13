@@ -1,5 +1,6 @@
 package com.ruoyi.system.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.ruoyi.common.core.domain.BaseEntity;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.Data;
  */
 @Data
 public class Task extends BaseEntity {
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long taskId;
     private String taskName;
 }
